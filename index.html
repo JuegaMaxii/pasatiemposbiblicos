@@ -333,15 +333,15 @@
             <section class="category-section">
                 <h2 class="category-title">Juegos e Ingenio</h2>
                 <div class="cards-grid">
-                    <a href="crucigrama.html" class="activity-card card-color-1">
+                    <a href="category/crucigrama.html" class="activity-card card-color-1">
                         <i class="fas fa-puzzle-piece icon" style="color: var(--color-principal);"></i>
                         <h3>Crucigrama</h3>
                     </a>
-                    <a href="#" class="activity-card card-color-2">
+                    <a href="sopa-letras.html" class="activity-card card-color-2">
                         <i class="fas fa-search icon" style="color: var(--color-secundario);"></i>
                         <h3>Sopa de Letras</h3>
                     </a>
-                    <a href="#" class="activity-card card-color-3">
+                    <a href="adivina.html" class="activity-card card-color-3">
                         <i class="fas fa-question-circle icon" style="color: var(--color-acento1);"></i>
                         <h3>Adivina</h3>
                     </a>
@@ -382,36 +382,27 @@
             const loader = document.getElementById('loader');
             const mainContent = document.getElementById('mainContent');
 
-            // Simula un tiempo de carga mínimo para que la animación se aprecie
             setTimeout(() => {
-                // Oculta el loader
                 loader.classList.add('loader-hidden');
-                
-                // Muestra el contenido principal con una animación
                 mainContent.classList.add('loaded');
-
-            }, 1500); // 1.5 segundos de espera
+            }, 1500);
         });
-        
+
         // --- Script para efecto de sonido al hacer clic (opcional) ---
-        // Para una experiencia más inmersiva, podrías añadir sonidos.
-        // Por ahora, solo es un ejemplo de cómo capturar los clics.
+        // Solo bloquea enlaces con href="#"
         const cards = document.querySelectorAll('.activity-card');
         cards.forEach(card => {
             card.addEventListener('click', (e) => {
-                // Previene que el enlace '#' recargue la página
-                e.preventDefault(); 
-                
-                console.log(`Has hecho clic en: ${card.querySelector('h3').textContent}`);
-                
-                // Añade una pequeña animación de "click"
-                card.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    card.style.transform = ''; // Vuelve al estado normal
-                }, 150);
-                
-                // Aquí podrías redirigir a la página de la actividad:
-                // window.location.href = card.href;
+                if (card.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    console.log(`Has hecho clic en: ${card.querySelector('h3').textContent}`);
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                    // Aquí podrías mostrar un mensaje o modal
+                }
+                // Si el href es distinto de "#", permite la navegación normal
             });
         });
     </script>
